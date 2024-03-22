@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        span {
+            font-size: 24px;
+            border: 2px solid black;
+            padding: 5px;
+        }
+        div{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Stop Watch</h1>
+        <span id="hr">00</span>:
+        <span id="min">00</span>:
+        <span id="sec">00</span>:
+        <span id="msc">000</span>
+    </center>
+    <script>
+        let msc = 0;
+        let sec = 0;
+        let min = 0;
+        let hr = 0;
+
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time.toString();
+        }
+
+        function Incrs() {
+            msc++;
+            if (msc === 1000) {
+                msc = 0;
+                sec++;
+                if (sec === 60) {
+                    sec = 0;
+                    min++;
+                    if (min === 60) {
+                        min = 0;
+                        hr++;
+                    }
+                }
+            }
+
+            document.getElementById('msc').innerText = formatTime(msc);
+            document.getElementById('sec').innerText = formatTime(sec);
+            document.getElementById('min').innerText = formatTime(min);
+            document.getElementById('hr').innerText = formatTime(hr);
+        }
+
+        setInterval(Incrs, 1);
+    </script>
+</body>
+</html>
+
